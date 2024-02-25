@@ -26,7 +26,7 @@ jobs:
 
     - name: Deploy to docs folder
       run: |
-        mkdir docs
+        mkdir -p docs
         cp -r generated_files/* docs/  # Adjust this command based on your project setup
       if: success()
 
