@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="/base.css">
+    {% block extra_head %}{% endblock extra_head %}
+</head>
+<body>
+    <div class="hamburger">&#9776;</div> <!-- Hamburger icon -->
+    <div class="sidebar">
+        <nav>
+            <p>
+                <a href="{{ menu[0].url }}">{{ menu[0].name }}</a>
+            </p>
+            <ul>
+                {% for item in menu[1:] %}
+                    <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <footer>
+            <p>{{ copyright }} All rights reserved.</p>
+        </footer>
+    </div>
+    <div class="main-content">
+        {% block content %}
+            {{ content }}
+        {% endblock content %}
+    </div>
+    <script src="/base.js"></script>
+    {% block extra_scripts %}{% endblock extra_scripts %}
+</body>
+</html>

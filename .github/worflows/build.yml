@@ -1,0 +1,45 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # Specify the Python version you need
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt  # Adjust this command based on your project setup
+
+    - name: Run generate.py
+      run: python generate.py  # Adjust this command based on your project setup
+
+    - name: Deploy to docs folder
+      run: |
+        mkdir docs
+        cp -r generated_files/* docs/  # Adjust this command based on your project setup
+      if: success()
+
+    - name: Commit and push changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "Auto-generated: Build and deploy to docs folder"
+        commit_user_name: "GitHub Actions"
+        commit_user_email: "actions@github.com"
+      if: success()
+
+    - name: Push changes to GitHub
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+      if: success()
