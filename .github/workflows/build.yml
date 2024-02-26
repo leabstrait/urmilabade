@@ -21,14 +21,14 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt  # Adjust this command based on your project setup
 
-    - name: Run generate.py
-      run: python generate.py  # Adjust this command based on your project setup
-
-    - name: Deploy to docs folder
+    - name: Set up docs folder
       run: |
         mkdir -p docs
-        cp -r generated_files/* docs/  # Adjust this command based on your project setup
+        find docs/ ! -name 'CNAME' -type f -exec rm -f {} + # Delete all contents of the docs folder except CNAME
       if: success()
+
+    - name: Run generate.py
+      run: python generate.py  # Adjust this command based on your project setup
 
     - name: Commit and push changes
       uses: stefanzweifel/git-auto-commit-action@v4
