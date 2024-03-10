@@ -1,11 +1,3 @@
----
-title: "About Me"
-description: "Learn more about the architect behind the designs."
-author: "Architect Name"
-date: "2024-02-24"
-template: "about.html"
----
-
 I am a dedicated architect with a passion for sustainable design. With over 10 years of experience in the industry, I have worked on a variety of projects ranging from residential to commercial buildings.
 
 ## My Mission

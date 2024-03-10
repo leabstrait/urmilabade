@@ -18,7 +18,7 @@ body {
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-top: 20px;
     transition: left 0.3s ease; /* Add transition for smooth animation */
 }
@@ -60,6 +60,15 @@ body {
     display: none;
 }
 
+/* Close Button Styles */
+.close-btn {
+    display: none; /* Hide the close button by default */
+    padding-right: 15px;
+    text-align: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 768px) {
     .hamburger {
         display: block;
@@ -67,6 +76,10 @@ body {
         top: 20px;
         left: 20px;
         cursor: pointer;
+    }
+
+    .close-btn {
+        display: block; /* Show the close button on small screens */
     }
 
     .sidebar {
