@@ -1,10 +1,9 @@
 import subprocess
 
-
-def git_commit_push():
+def git_commit_push(commit_message="autocommit - update repo"):
     # Commit changes
     subprocess.run(["git", "add", "."])
-    subprocess.run(["git", "commit", "-m", "Automatic commit"])
+    subprocess.run(["git", "commit", "-m", commit_message])
 
     # Pull changes with rebase and autostash
     subprocess.run(["git", "pull", "--rebase", "--autostash"])
@@ -12,6 +11,6 @@ def git_commit_push():
     # Push changes
     subprocess.run(["git", "push"])
 
-
 if __name__ == "__main__":
-    git_commit_push()
+    commit_message = input("Enter the commit message: ")
+    git_commit_push(commit_message)

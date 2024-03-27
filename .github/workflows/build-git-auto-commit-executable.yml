@@ -1,0 +1,46 @@
+name: Build Executable
+
+on:
+  push:
+    paths:
+      - 'git_auto_commit.py'
+
+jobs:
+  build:
+    name: Build Executable
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install PyInstaller
+        run: |
+          pip install pyinstaller
+
+      - name: Build Executable
+        run: |
+          pyinstaller --onefile git_auto_commit.py
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            mv dist/git_auto_commit.exe ./git_auto_commit.exe
+          else
+            mv dist/git_auto_commit ./git_auto_commit
+          fi
+
+      - name: Commit Executables to Repository
+        if: matrix.os == 'ubuntu-latest'  # Commit only once
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add git_auto_commit.exe git_auto_commit_linux git_auto_commit_windows.exe
+          git commit -m "Add executable files"
+          git push origin main
