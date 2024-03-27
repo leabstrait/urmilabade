@@ -36,12 +36,12 @@ jobs:
 
       - name: Upload Executable Artifact
         uses: actions/upload-artifact@v4
-        with:
-          name: executable
-          path: |
-            git_auto_commit.exe  # For Windows
-            git_auto_commit      # For Linux
-          if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
+        # with:
+        #   name: executable
+        #   path: |
+        #     git_auto_commit.exe  # For Windows
+        #     git_auto_commit      # For Linux
+        #   if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
 
   commit:
     name: Commit Executables to Repository
