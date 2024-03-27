@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'git_auto_commit*'
-      - '.github/workflows/build-executables.yml'
 
 jobs:
   generate_and_commit_site:
