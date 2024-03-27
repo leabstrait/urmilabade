@@ -1,5 +1,5 @@
-name = "project1"
-client = "a firm"
+name = ""
+client = ""
 tags = ["commercial", "apple", "cat"]
 description = "An awesome project"
 icon = "apartment"
