@@ -70,8 +70,8 @@ if __name__ == "__main__":
     # Define the source directory for media
     media_dir = "media"  # Update with the directory containing your media files
 
-    # Define the source directory for downloads
-    downloads_dir = "downloads"  # Update with the directory containing your downloads files
+    # Define the source directory for pdfs
+    pdfs_dir = "pdfs"  # Update with the directory containing your pdfs files
 
     # Clear output directory
     clear_output_dir(output_dir, skip=["CNAME"])
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     copy_assets(portfolio_dir, output_dir)
     copy_assets(scripts_dir, output_dir)
     copy_assets(media_dir, output_dir)
-    copy_assets(downloads_dir, output_dir)
+    copy_assets(pdfs_dir, output_dir)
 
     print("All templates rendered successfully.")
     print(f"Output saved to: {output_dir}")
