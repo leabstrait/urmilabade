@@ -65,7 +65,7 @@ jobs:
         run: |
           mv executable-windows-latest/git_auto_commit ./git_auto_commit.exe
           mv executable-ubuntu-latest/git_auto_commit ./git_auto_commit
-          rm executable-*
+          rm -rf executable-*
 
       - name: Check for changes
         id: check_changes
