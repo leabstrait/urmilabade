@@ -39,8 +39,8 @@ jobs:
         with:
           name: executable
           path: |
-            ./dist/git_auto_commit.exe  # For Windows
-            ./dist/git_auto_commit      # For Linux
+            git_auto_commit.exe  # For Windows
+            git_auto_commit      # For Linux
           if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
 
   commit:
