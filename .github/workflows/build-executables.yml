@@ -3,7 +3,7 @@ name: Build Executables
 on:
   push:
     paths:
-      - 'git_auto_commit.py'
+      - 'git_auto_commit*'
       - '.github/workflows/build-executables.yml'
 
 jobs:
