@@ -38,9 +38,9 @@ jobs:
           name: executable-${{ matrix.os }}
           path: |
             # For Windows
-            git_auto_commit.exe
+            ${{ github.workspace }}\dist\git_auto_commit.exe
             # For Linux
-            git_auto_commit
+            ${{ github.workspace }}/dist/git_auto_commit
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
 
 
