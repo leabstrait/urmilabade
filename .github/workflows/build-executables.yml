@@ -37,12 +37,12 @@ jobs:
       - name: Upload Executable Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: executable
+          name: executable-${{ matrix.os }}-${{ matrix.version }}
           path: |
             # For Windows
-            ${{ github.workspace }}\dist\git_auto_commit.exe
+            git_auto_commit.exe
             # For Linux
-            ${{ github.workspace }}/dist/git_auto_commit
+            git_auto_commit
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
 
 
