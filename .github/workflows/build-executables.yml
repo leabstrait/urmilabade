@@ -67,7 +67,7 @@ jobs:
       - name: Build Executable
         run: |
           pyinstaller --onefile git_auto_commit.py
-          mv -f dist/git_auto_commit.exe ./git_auto_commit.exe
+          mv -Force dist/git_auto_commit.exe ./git_auto_commit.exe
 
       - name: Check for changes
         id: check_changes_windows
