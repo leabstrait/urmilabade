@@ -39,14 +39,18 @@ jobs:
             mv dist/git_auto_commit ./git_auto_commit
           fi
 
+      - name: Check for changes
+        id: check_changes
+        run: echo "::set-output name=changes::$(git status --porcelain)"
+
       - name: Commit Executables to Repository
-        if: matrix.os == 'ubuntu-latest'  # Commit only once
+        if: steps.check_changes.outputs.changes != ''
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            git add git_auto_commit.exe
-          else
+          git add git_auto_commit.exe
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
             git add git_auto_commit
           fi
           git commit -m "Add executable files"

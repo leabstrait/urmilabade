@@ -29,6 +29,7 @@ jobs:
     - name: Check for changes
       id: check_changes
       run: echo "::set-output name=changes::$(git status --porcelain)"
+
     - name: Commit site changes
       if: steps.check_changes.outputs.changes != ''
       run: |
