@@ -33,25 +33,39 @@ jobs:
       - name: Build Executable
         run: |
           pyinstaller --onefile git_auto_commit.py
-          if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            mv dist/git_auto_commit.exe ./git_auto_commit.exe
-          else
-            mv dist/git_auto_commit ./git_auto_commit
-          fi
+
+      - name: Upload Executable Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: executable
+          path: |
+            dist/git_auto_commit.exe  # For Windows
+            dist/git_auto_commit      # For Linux
+          if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
+
+  commit:
+    name: Commit Executables to Repository
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Executable Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: executable
 
       - name: Check for changes
         id: check_changes
         run: echo "::set-output name=changes::$(git status --porcelain)"
 
       - name: Commit Executables to Repository
-        if: steps.check_changes.outputs.changes != '' && matrix.os == 'ubuntu-latest'  # Commit only once
+        if: steps.check_changes.outputs.changes != ''
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            git add git_auto_commit.exe
-          else
-            git add git_auto_commit
-          fi
+          git add git_auto_commit.exe git_auto_commit
           git commit -m "Add executable files"
           git push origin main
