@@ -37,7 +37,7 @@ jobs:
       - name: Upload Executable Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: executable-${{ matrix.os }}-${{ matrix.version }}
+          name: executable-${{ matrix.os }}
           path: |
             # For Windows
             git_auto_commit.exe
@@ -67,9 +67,9 @@ jobs:
 
       - name: Move Executables to Root
         run: |
-          mv dist/git_auto_commit.exe ./git_auto_commit.exe
-          mv dist/git_auto_commit ./git_auto_commit
-          rm dist
+          mv executable-*/git_auto_commit.exe ./git_auto_commit.exe
+          mv executable-*/git_auto_commit ./git_auto_commit
+          rm executable-*
 
       - name: Commit Executables to Repository
         if: steps.check_changes.outputs.changes != ''
