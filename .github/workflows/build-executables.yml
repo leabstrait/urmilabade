@@ -39,8 +39,8 @@ jobs:
         with:
           name: executable
           path: |
-            dist/git_auto_commit.exe  # For Windows
-            dist/git_auto_commit      # For Linux
+            ./dist/git_auto_commit.exe  # For Windows
+            ./dist/git_auto_commit      # For Linux
           if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
 
   commit:
@@ -54,7 +54,7 @@ jobs:
 
       - name: Download Executable Artifact
         uses: actions/download-artifact@v4
-        
+
       - name: List files
         run: ls -R
 
