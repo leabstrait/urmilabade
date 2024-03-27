@@ -42,12 +42,12 @@ jobs:
           git config --local user.name "GitHub Action"
           git add git_auto_commit
           git commit -m "Add Linux executable file"
-          git pull --rebase
           git push origin main
 
   build_windows:
     name: Build Executable on Windows
     runs-on: windows-latest
+    needs: build_linux
     permissions:
       contents: write
 
