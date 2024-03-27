@@ -33,10 +33,10 @@ jobs:
       - name: Build Executable
         run: |
           pyinstaller --onefile git_auto_commit.py
-          if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            mv dist/git_auto_commit.exe git_auto_commit.exe
-          else
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
             mv dist/git_auto_commit git_auto_commit
+          else
+            mv dist/git_auto_commit.exe git_auto_commit.exe
           fi
 
       - name: Upload Executable Artifact
