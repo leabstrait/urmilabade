@@ -34,13 +34,19 @@ jobs:
         run: |
           pyinstaller --onefile git_auto_commit.py
 
+
+      - name: Move Executables to Root
+        run: |
+          mv ./dist/git_auto_commit.exe ./git_auto_commit.exe
+          mv ./dist/git_auto_commit ./git_auto_commit
+
       - name: Upload Executable Artifact
         uses: actions/upload-artifact@v4
         with:
           name: executable
           path: |
-            dist/git_auto_commit.exe  # For Windows
-            dist/git_auto_commit      # For Linux
+            git_auto_commit.exe  # For Windows
+            git_auto_commit      # For Linux
           if: matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest'
 
   commit:
@@ -60,12 +66,6 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: echo "::set-output name=changes::$(git status --porcelain)"
-
-      - name: Move Executables to Root
-        run: |
-          mv ./dist/git_auto_commit.exe ./git_auto_commit.exe
-          mv ./dist/git_auto_commit ./git_auto_commit
-          rm ./dist
 
       - name: Commit Executables to Repository
         if: steps.check_changes.outputs.changes != ''
