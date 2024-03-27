@@ -39,9 +39,12 @@ jobs:
         with:
           name: executable
           path: |
-            ${{ github.workspace }}\dist\git_auto_commit.exe  # For Windows
-            ${{ github.workspace }}/dist/git_auto_commit      # For Linux
+            # For Windows
+            ${{ github.workspace }}\dist\git_auto_commit.exe
+            # For Linux
+            ${{ github.workspace }}/dist/git_auto_commit
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
+
 
   commit:
     name: Commit Executables to Repository
