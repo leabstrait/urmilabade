@@ -1,0 +1,82 @@
+{% extends "base.j2" %}
+
+{% block content %}
+
+<div class="columns body-columns">
+    <div class="column is-half is-offset-one-quarter">
+
+        {% for project in projects %}
+        <div class="card">
+            {# <div class="header">
+                <div class="media">
+                    <div class="media-left">
+                        <span class="icon is-medium">
+                            <i class="material-icons">{{project.icon}}</i>
+                        </span>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">{{project.name}}</p>
+                        <p class="subtitle is-6">{{project.client}}</p>
+                    </div>
+                </div>
+            </div> #}
+
+            <div class="card-image">
+                <div class="carousel">
+                    <ul>
+                        {% for picture in project.pictures %}
+                        <li>
+                            <img src="{{ picture }}" style="cursor: pointer;" alt="Picture">
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-content">
+                <div class="content">
+                    {% if project.name or project.client %}
+                    <div style="display: flex; justify-content: space-between;">
+                        <p>
+                            {% if project.name %}
+                            <span class="subtitle is-5">Name: {{project.name}}</span>
+                            {% endif %}
+                        </p>
+                        <p>
+                            {% if project.client %}
+                            <span class="subtitle is-6">Client: {{project.client}}</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    {% endif %}
+                    <p>
+                        {{project.description}}
+                    </p>
+                    {% for tag in project.tags%}
+                    <span class="tag">
+                        {{tag}}
+                    </span>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="card-footer-item" style="display: flex; justify-content: space-between;">
+                    <div>
+                        <span class="icon is-medium">
+                            <i class="material-icons">{{project.icon}}</i>
+                        </span>
+                    </div>
+
+                    <time datetime="{{project.date}}">{{project.date}}</time>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

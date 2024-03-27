@@ -1,4 +1,29 @@
-{% extends "base.j2" %}
+{% extends 'base.j2' %}
+
 {% block content %}
-    {{ content | safe }}
-{% endblock content %}
+<div class="columns body-columns">
+    <div class="column is-half is-offset-one-quarter">
+        <div class="columns is-vcentered">
+            <div class="column is-three-fifths">
+                <div class="content">
+                    <p>I'm Urmila Bade, an architect passionate about creating eco-friendly buildings. I design spaces that not only look
+                    beautiful but also help protect the environment. From bustling cities to serene natural settings, I strive to make a
+                    positive impact through my sustainable designs.
+                    </p>
+                </div>
+            </div>
+
+            <div class="column is-two-fifths">
+                <figure class="image ">
+                    <img class="is-rounded" src="media/urmila.jpeg" alt="Profile Image">
+                </figure>
+            </div>
+        </div>
+        <div class="content">
+            <h3 class="subtitle">Contact Me</h3>
+            <p> Email: <a href="mailto:urmibade@gmail.com"> urmibade@gmail.com</a></p>
+            <p>Address: London, United Kingdom</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

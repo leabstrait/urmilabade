@@ -1,0 +1,5 @@
+name = "project1"
+client = "a firm"
+tags = ["commercial", "apple", "cat"]
+description = "An awesome project"
+icon = "apartment"
