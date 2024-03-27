@@ -42,7 +42,7 @@ jobs:
             # For Linux
             ${{ github.workspace }}/dist/git_auto_commit
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
-
+          overwrite: true
 
   commit:
     name: Commit Executables to Repository
