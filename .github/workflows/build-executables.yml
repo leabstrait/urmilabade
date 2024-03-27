@@ -39,8 +39,8 @@ jobs:
         with:
           name: executable
           path: |
-            ${{ github.workspace }}/dist/git_auto_commit.exe  # For Windows
-            ${{ github.workspace }}dist/git_auto_commit      # For Linux
+            ${{ github.workspace }}\dist\git_auto_commit.exe  # For Windows
+            ${{ github.workspace }}/dist/git_auto_commit      # For Linux
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
 
   commit:
@@ -64,9 +64,9 @@ jobs:
 
       - name: Move Executables to Root
         run: |
-          mv ./dist/git_auto_commit.exe ./git_auto_commit.exe
-          mv ./dist/git_auto_commit ./git_auto_commit
-          rm ./dist
+          mv dist/git_auto_commit.exe ./git_auto_commit.exe
+          mv dist/git_auto_commit ./git_auto_commit
+          rm dist
 
       - name: Commit Executables to Repository
         if: steps.check_changes.outputs.changes != ''
