@@ -42,6 +42,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add git_auto_commit
           git commit -m "Add Linux executable file"
+          git pull --rebase
           git push origin main
 
   build_windows:
@@ -79,5 +80,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add git_auto_commit.exe
           git commit -m "Add Windows executable file"
-          git pull --rebase 
+          git pull --rebase
           git push origin main
