@@ -39,8 +39,8 @@ jobs:
         with:
           name: executable
           path: |
-            dist/git_auto_commit.exe  # For Windows
-            dist/git_auto_commit      # For Linux
+            ${{ github.workspace }}/dist/git_auto_commit.exe  # For Windows
+            ${{ github.workspace }}dist/git_auto_commit      # For Linux
           if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
 
   commit:
