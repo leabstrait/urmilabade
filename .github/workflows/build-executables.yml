@@ -67,8 +67,8 @@ jobs:
 
       - name: Move Executables to Root
         run: |
-          mv executable-*/git_auto_commit.exe ./git_auto_commit.exe
-          mv executable-*/git_auto_commit ./git_auto_commit
+          mv executable-windows-latest/git_auto_commit.exe ./git_auto_commit.exe
+          mv executable-ubuntu-latest/git_auto_commit ./git_auto_commit
           rm executable-*
 
       - name: Commit Executables to Repository
