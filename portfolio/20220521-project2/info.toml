@@ -1,4 +1,4 @@
-name = "project2"
-tags = ["residential", "banana", "dog"]
-description = "An awesome project number 2"
-icon = "home"
+name = "Interior"
+tags = ["residential", "Kitchen", "Dining"]
+description = "A Residential"
+icon = "Kitchen"

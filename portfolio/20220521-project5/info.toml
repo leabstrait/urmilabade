@@ -1,0 +1,4 @@
+name = "Exterior"
+tags = ["residential", "Classical", "facade"]
+description = "A classical residential design"
+icon = "home"

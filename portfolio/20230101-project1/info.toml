@@ -1,5 +1,5 @@
-name = ""
+name = "Interior"
 client = ""
-tags = ["commercial", "apple", "cat"]
+tags = ["Residential", "Bedroom", "Classical"]
 description = "An awesome project"
 icon = "apartment"
