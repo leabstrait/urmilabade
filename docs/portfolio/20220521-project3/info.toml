@@ -1,0 +1,4 @@
+name = "Interior"
+tags = ["residential", "Classical", "Modern","Livingroom"]
+description = "Residential living room"
+icon = "home"
