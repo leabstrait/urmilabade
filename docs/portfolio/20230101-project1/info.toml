@@ -1,0 +1,5 @@
+name = "Interior"
+client = ""
+tags = ["Residential", "Bedroom", "Classical"]
+description = "An awesome project"
+icon = "apartment"
