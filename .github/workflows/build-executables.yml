@@ -1,0 +1,84 @@
+name: Build Executables
+
+on:
+  push:
+    paths:
+      - 'git_auto_commit*'
+      - '.github/workflows/build-executables.yml'
+
+jobs:
+  build_linux:
+    name: Build Executable on Linux
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install PyInstaller
+        run: |
+          pip install pyinstaller
+
+      - name: Build Executable
+        run: |
+          pyinstaller --onefile git_auto_commit.py
+          mv dist/git_auto_commit ./git_auto_commit
+
+      - name: Check for changes
+        id: check_changes_linux
+        run: echo "::set-output name=changes::$(git status --porcelain)"
+
+      - name: Commit Executables to Repository on Linux
+        if: steps.check_changes_linux.outputs.changes != ''
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add git_auto_commit
+          git commit -m "Add Linux executable file"
+          git push origin main
+
+  build_windows:
+    name: Build Executable on Windows
+    runs-on: windows-latest
+    needs: build_linux
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install PyInstaller
+        run: |
+          pip install pyinstaller
+
+      - name: Build Executable
+        run: |
+          pyinstaller --onefile git_auto_commit.py
+          mv -Force dist/git_auto_commit.exe ./git_auto_commit.exe
+
+      - name: Check for changes
+        id: check_changes_windows
+        run: echo "::set-output name=changes::$(git status --porcelain)"
+
+      - name: Commit Executables to Repository on Windows
+        if: steps.check_changes_windows.outputs.changes != ''
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add git_auto_commit.exe
+          git commit -m "Add Windows executable file"
+          git pull --rebase
+          git push origin main

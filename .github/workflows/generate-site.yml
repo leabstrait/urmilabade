@@ -1,0 +1,40 @@
+name: Generate and Commit Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate_and_commit_site:
+    name: Generate and Commit Site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies with pip
+      run: pip install -r requirements.txt
+
+    - name: Generate site
+      run: python main.py
+
+    - name: Check for changes
+      id: check_changes
+      run: echo "::set-output name=changes::$(git status --porcelain)"
+
+    - name: Commit site changes
+      if: steps.check_changes.outputs.changes != ''
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Automatically generated site"
+        git push

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urmila Bade - Architect</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+    <!-- Bulma Version 0.9.x-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/carousel.css">
+</head>
+
+<body>
+    <div class="navbar is-inline-flex is-fixed-top">
+        <!-- Navbar content -->
+        <div class="navbar-item is-flex-touch">
+            {% if page == 'index' %}
+            <a class="navbar-item" href="/about.html">
+                <span class="icon is-large">
+                    <i class="material-icons">person_outline</i>
+                </span>
+            </a>
+            {% else %}
+            <a class="navbar-item" href="/">
+                <span class="icon is-large">
+                    <i class="material-icons">category</i>
+                </span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container has-navbar-fixed-top">
+        {% block content %} {% endblock %}
+    </div>
+    <!-- JavaScript libraries -->
+
+    <script src="/scripts/carousel.js"></script>
+</body>
+
+</html>
